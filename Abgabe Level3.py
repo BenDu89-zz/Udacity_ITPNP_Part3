@@ -4,19 +4,23 @@ sentence_easy = "A game has ---1--- innings. There is an infield and a ---2---. 
 sentence_medium = "In Baseball we habe ---1--- player in the feld for the defents team. There are ---2--- outfielder. ---3--- is when you hit the ball over the outfield. A ball in the air calls a ---4---"
 sentence_hard = "---1--- is the first german Baseballplayer in the MLB. A ---2--- ist the best thing a batter can do. 3 strikes then the Batter is ---3---. Best position in the field ---4---"
 
-replaced = []
+final_sentence = []
 
 answers_easy = ["9", "outfield", "pitcher","catcher" ]
 answers_medium = ["9", "3", "homerun", "flyball"]
 answers_hard = ["max", "homerun", "out", "shortstop"]
 
-def word_in_pos(word, parts_of_speech): # Check is the part is a part of Blank
+def word_in_pos(word, parts_of_speech): 
+    # Check is the part is a part of blanks
     for pos in parts_of_speech:
+        # goint to the elements of the list
         if pos in word:
             return pos
+            # returns the element if found
     return None
-
-def gameplay(replaced,sentence,answer,blacks): #Game logging
+    #returns None if the element is not found
+                   
+def gameplay(final_sentence,sentence,answer,blanks): #Game logging
     sentence = sentence.split()# into a list
     # print sentence
     counter = 0 # for fail trys
@@ -38,11 +42,11 @@ def gameplay(replaced,sentence,answer,blacks): #Game logging
                 print answer # showing solutions
                 break
             i = i.replace(replacement,user_input)
-            replaced.append(i)
+            final_sentence.append(i)
         else:
-            replaced.append(i)
-    replaced = " ".join(replaced)
-    return replaced # pint out list
+            final_sentence.append(i)
+    final_sentence = " ".join(final_sentence)
+    return final_sentence # pint out list
 
 print "" # just that it looks nicer
 print "Welcome to the game where you learn some Baseball rules" #Welcome text
@@ -66,10 +70,10 @@ print ""
 
 if user_input == "easy":
     print sentence_easy
-    print gameplay(replaced,sentence_easy,answers_easy,blanks)
+    print gameplay(final_sentence,sentence_easy,answers_easy,blanks)
 if user_input == "medium":
     print sentence_medium
-    print gameplay(replaced,sentence_medium,answers_medium,blanks)
+    print gameplay(final_sentence,sentence_medium,answers_medium,blanks)
 if user_input == "hard":
     print sentence_hard
-    print gameplay(replaced,sentence_hard,answers_hard,blanks)
+    print gameplay(final_sentence,sentence_hard,answers_hard,blanks)
